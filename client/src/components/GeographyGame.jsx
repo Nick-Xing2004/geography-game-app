@@ -31,6 +31,10 @@ export const GeographyGame = () => {
     const handleSubmit = async () => {
         try {
             const response = await axios.post("http://localhost:3001/api/verifications", { answer });
+
+            if (submissionTimes % 5 === 0) {
+                setScore(0);
+            }
     
             if (response.data.correctness) {
                 setScore(score + 1);
@@ -68,7 +72,11 @@ export const GeographyGame = () => {
             <img src={image1} className='w-80 height-auto mx-auto -mt-4'></img>
             {/* <h1 className='text-4xl font-bold text-center text-sky-400 mb-6'>Welcome to the Geography Guessing Game!</h1> */}
             <h3 className='text-2xl font-semibold mb-4 text-purple-500 italic '>Current Question: {question}</h3>
-            <input className='p-3 mb-4 border-gray-300 w-full rounded-md focus:outline-none focus:ring-4 focus:ring-teal-600' placeholder='Enter the name of the country here:' onChange = {(e) => setAnswer(e.target.value)} />
+            <input className='p-3 mb-4 border-gray-300 w-full rounded-md focus:outline-none focus:ring-4 focus:ring-teal-600' placeholder='Enter the name of the country here:' onChange = {(e) => setAnswer(e.target.value)} value={answer} onKeyDown={(e) => {
+                if (e.key === "Enter") {             //implements the 'enter' submission functionality (another answer submission method added)
+                    handleSubmit();
+                }
+            }}/>
             <p className={`text-lg font-semibold mb-8 ${
                     isCorrect === true ? 'text-green-600' : 
                     isCorrect === false ? 'text-red-600' : 'text-teal-600'

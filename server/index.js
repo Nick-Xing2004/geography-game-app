@@ -38,7 +38,7 @@ const getRandomCountryQuestion = async () => {
         },
         {
             //q5
-            question: `which country's overall area is ${country.area.toString()}?`,
+            question: `which country's overall area is ${country.area.toString()} sq km?`,
             key: country.name.common
         },
         {
