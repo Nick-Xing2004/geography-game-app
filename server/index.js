@@ -69,7 +69,7 @@ const getRandomCountryQuestion = async () => {
         const randomQuestionIndex = Math.floor(Math.random() * questions.length);   //similarly, get one of the question for the country randomly 
         const randomQuestion = questions[randomQuestionIndex];
 
-        return randomQuestion;    //returning the question and the key
+        return randomQuestion;    //returning the question and the key and the hints array 
     } catch (error) {
         console.log("exist errors while fetching data from the api");
         return null;

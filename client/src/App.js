@@ -1,4 +1,5 @@
 import './App.css';
+import './index.css';
 import {GeographyGame} from './components/GeographyGame';
 
 function App() {
