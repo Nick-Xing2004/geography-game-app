@@ -81,7 +81,7 @@ export const GeographyGame = () => {
                     isCorrect === true ? 'text-green-600' : 
                     isCorrect === false ? 'text-red-600' : 'text-teal-600'
                 }`}>{feedback}</p>
-            {submissionTimes % 5 === 0 ? <h3 className='text-xl font-semibold mb-6 text-teal-600'>score for the recent 5 attempts: {score} pts</h3> : <></>}
+            {submissionTimes % 5 === 0  && submissionTimes !== 0 ? <h3 className='text-xl font-semibold mb-6 text-teal-600'>score for the recent 5 attempts: {score} pts</h3> : <></>}
             <button className='w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-green-700 mb-4  mt-6 transition duration-200 ease-in-out' onClick={handleHints}>Stuck? Click here to obtain hint for the country name!</button>
             <p className='text-lg mb-6 text-gray-700'>&#x27A1; {hintInfo}...</p>
             <button className='w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out' onClick={handleSubmit}>Submit the answer</button>
