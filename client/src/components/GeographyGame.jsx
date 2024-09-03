@@ -1,9 +1,10 @@
 import {useState, useEffect} from 'react';
 import axios from "axios";
 import image1 from '../images/world.webp';
+import Confetti from 'react-confetti'; //the component library used for animation after user submission 
 
 export const GeographyGame = () => {
-    const [question, setQuestion] = useState("");       //several states used to update the component
+    const [question, setQuestion] = useState("");       //several states used for main info update
     const [submissionTimes, setSubmissionTimes] = useState(0);
     const [answer, setAnswer] =  useState("");
     const [score, setScore] = useState(0);
@@ -15,7 +16,9 @@ export const GeographyGame = () => {
     const [hint, setHint] = useState("");
     const [hintIndex, setIndex] = useState(1);
     const [hintInfo, setHintInfo] = useState("");
-    
+
+    //state used for submission animation controlling
+    const [showConfetti, setShowConfetti] = useState(false);    
     
     //the hook used for fetching data from the backend 
     useEffect(() => {
@@ -24,6 +27,7 @@ export const GeographyGame = () => {
         }).then((data) => {
             setQuestion(data.question);
             setHint(data.answer);
+            console.log(data.answer);       //used for testing program stability
         })
     }, [submissionTimes]);    //being called once submissionTimes changed 
 
@@ -32,15 +36,26 @@ export const GeographyGame = () => {
         try {
             const response = await axios.post("http://localhost:3001/api/verifications", { answer });
 
-            if (submissionTimes % 5 === 0) {
-                setScore(0);
-            }
-    
             if (response.data.correctness) {
-                setScore(score + 1);
+                if (submissionTimes % 5 === 0) {
+                    setScore(1);
+                } else {
+                    setScore(score+1);
+                }
                 setFeedback("Yes, your answer is correct and you will be given a point!");
                 setIsCorrect(true);
+                setShowConfetti(true);
+
+                //the time controlling functionality set to control the submission animation time length
+                setTimeout(() => {
+                    setShowConfetti(false);
+                }, 3000);
+                
+
             } else {
+                if (submissionTimes % 5 === 0) {
+                    setScore(0);
+                }
                 setFeedback(`Unfortunately, the answer is wrong. The correct answer is ${response.data.correctAnswer}.`);
                 setIsCorrect(false);
             }
@@ -77,11 +92,14 @@ export const GeographyGame = () => {
                     handleSubmit();
                 }
             }}/>
+            {/* displays the animation when the user answers the question correctly */}
+            {showConfetti && <Confetti/>}      
             <p className={`text-lg font-semibold mb-8 ${
                     isCorrect === true ? 'text-green-600' : 
                     isCorrect === false ? 'text-red-600' : 'text-teal-600'
                 }`}>{feedback}</p>
-            {submissionTimes % 5 === 0  && submissionTimes !== 0 ? <h3 className='text-xl font-semibold mb-6 text-teal-600'>score for the recent 5 attempts: {score} pts</h3> : <></>}
+            {submissionTimes % 5 === 0  && submissionTimes !== 0 ? <h3 className='text-xl font-semibold mb-6 text-teal-600'>score for the past 5 attempts: {score} pts</h3> : <></>}
+            <hr className='border-2 border-dashed border-gray-300'/>
             <button className='w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-green-700 mb-4  mt-6 transition duration-200 ease-in-out' onClick={handleHints}>Stuck? Click here to obtain hint for the country name!</button>
             <p className='text-lg mb-6 text-gray-700'>&#x27A1; {hintInfo}...</p>
             <button className='w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out' onClick={handleSubmit}>Submit the answer</button>
