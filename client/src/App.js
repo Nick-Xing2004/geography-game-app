@@ -1,12 +1,19 @@
 import './App.css';
 import './index.css';
-import {GeographyGame} from './components/GeographyGame';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { MainMenu } from './components/MainMenu';
+import { GeographyGame } from './components/GeographyGame';
+import { Leaderboard } from './components/Leaderboard';
 
 function App() {
   return (
-    <div className="App">
-      <GeographyGame />
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<MainMenu/>}/>
+        <Route path='/game' element={<GeographyGame/>}/>
+        <Route path='/leaderboard' element={<Leaderboard/>}/>
+      </Routes>
+    </Router>
   );
 }
 

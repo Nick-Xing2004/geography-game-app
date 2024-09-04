@@ -2,8 +2,11 @@ import {useState, useEffect} from 'react';
 import axios from "axios";
 import image1 from '../images/world.webp';
 import Confetti from 'react-confetti'; //the component library used for animation after user submission 
+import { Link, useNavigate} from 'react-router-dom';
 
 export const GeographyGame = () => {
+    const navigate = useNavigate(); //the navigation hook used to navigate to the leaderboard page
+
     const [question, setQuestion] = useState("");       //several states used for main info update
     const [submissionTimes, setSubmissionTimes] = useState(0);
     const [answer, setAnswer] =  useState("");
@@ -59,6 +62,10 @@ export const GeographyGame = () => {
                 setFeedback(`Unfortunately, the answer is wrong. The correct answer is ${response.data.correctAnswer}.`);
                 setIsCorrect(false);
             }
+
+            if (submissionTimes !== 0 && (submissionTimes + 1) % 5 === 0) {
+                saveScore(score);
+            }
     
             setSubmissionTimes(submissionTimes + 1);        //updating the submissionTimes
             setAnswer("");       //clearing the answer to prepare for the next question
@@ -79,6 +86,19 @@ export const GeographyGame = () => {
         } else {
             setHintInfo(hint.substring(0, hintIndex));
             setIndex(hintIndex+1);
+        }
+    }
+
+    //save the user's score to the leaderboard 
+    const saveScore = async (score) => {
+        try {
+            const playerName = prompt("Please enter your name for the leaderboard: ");
+            if (playerName) {
+                await axios.post("http://localhost:3001/api/leaderboard", {name : playerName, score});
+                alert('score submitted successfully!');
+            }
+        } catch (err) {
+            console.error("Error saving score: ", err);
         }
     }
     
@@ -103,6 +123,10 @@ export const GeographyGame = () => {
             <button className='w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-green-700 mb-4  mt-6 transition duration-200 ease-in-out' onClick={handleHints}>Stuck? Click here to obtain hint for the country name!</button>
             <p className='text-lg mb-6 text-gray-700'>&#x27A1; {hintInfo}...</p>
             <button className='w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out' onClick={handleSubmit}>Submit the answer</button>
+            {/* <Link to='../leaderboard'>Jump to the Leaderboard</Link> */}
+            <button onClick={() => {
+                navigate('/leaderboard');
+            }} className='w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out mt-2'>Jump to the Leaderboard</button>
         </div>
     );
 }

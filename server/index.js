@@ -98,6 +98,22 @@ app.post('/api/verifications', (req, res) => {
     res.json({correctness: userAnswer === correctAnswer, correctAnswer: correctAnswer});
 });
 
+let leaderboard = [];
+
+//the route dealing with leadrboard info posting 
+app.post('/api/leaderboard', (req, res) => {
+    const {name, score} = req.body;
+    leaderboard.push({name, score});
+    leaderboard.sort((a, b) => b.score - a.score);
+
+    res.status(200).json({message: 'player info and score added to the leaderboard!'});
+});
+
+//the route dealing with the leaderboard info getting
+app.get('/api/leaderboard', (req, res) => {
+    res.status(200).json(leaderboard);
+});
+
 
 app.listen(port, () => {        //setting up the server on port 3001
     console.log(`the server is now running on port ${port}`);
