@@ -93,6 +93,7 @@ export const GeographyGame = () => {
     const saveScore = async (score) => {
         try {
             const playerName = prompt("Please enter your name for the leaderboard: ");
+            console.log(playerName);   //used for testing the program
             if (playerName) {
                 await axios.post("http://localhost:3001/api/leaderboard", {name : playerName, score});
                 alert('score submitted successfully!');

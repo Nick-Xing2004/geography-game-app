@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
+import ScrollToBottom from 'react-scroll-to-bottom';   //the component library used to make the rank board scrollable
 import axios from 'axios';
 
 export const Leaderboard = () => {
@@ -22,15 +23,17 @@ export const Leaderboard = () => {
     return (
         <div className='max-w-2xl p-6 mx-auto my-8 bg-gray-100 shadow-lg rounded-lg'>
             <h2 className='text-2xl font-bold text-center mb-6 text-gray-800'>&#128073;  Leaderboard  &#128072;</h2>
-            <ul className='space-y-4'>
-                {leaderboard.map((entry, index) => {
-                    return (
-                        <li key={index} className='bg-teal-300 p-4 rounded-md shadow-sm flex justify-between items-center'>
-                            {index + 1}: {entry.name} - {entry.score} pts
-                        </li>
-                    )
-                })}
-            </ul>
+            <ScrollToBottom className='h-80 overflow-y-auto'>
+                <ul className='space-y-4'>
+                    {leaderboard.map((entry, index) => {
+                        return (
+                            <li key={index} className='bg-teal-300 p-4 rounded-md shadow-sm flex justify-between items-center'>
+                                {index + 1}: {entry.name} - {entry.score} pts
+                            </li>
+                        )
+                    })}
+                </ul>
+            </ScrollToBottom>    
             <button onClick={() => {
                 navigate('/game');
             }} className='w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out mt-4'>Back to the game right now</button>
