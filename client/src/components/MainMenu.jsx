@@ -1,4 +1,5 @@
 import { Link, useNavigate} from 'react-router-dom';
+import backgroundImage from '../images/background_main_menu.jpg';   //background image for the page
 // import { GeographyGame } from './GeographyGame';
 // import { Leaderboard } from './Leaderboard';
 
@@ -6,8 +7,13 @@ export const MainMenu = () => {
     const navigate = useNavigate(); //the navigation hook used to navigate to the leaderboard page
 
     return (
-        <div className='py-8 bg-gray-100 min-h-screen flex flex-col items-center justify-center'>
-            <h1 className='text-4xl font-bold text-blue-700 mb-8 text-center'>Welcome to the Geography Trivia</h1>
+        <div className='py-8 bg-gray-100 min-h-screen flex flex-col items-center justify-center' style={{
+            backgroundSize: 'cover',      //set the background image attribute for the page
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundImage: `url(${backgroundImage})`
+        }}>
+            <h1 className='text-4xl font-bold text-indigo-900 mb-8 text-center'>Welcome to the Geography Trivia</h1>
             <div className='space-y-6'>
                 <button onClick={() => {
                     navigate('/game');

@@ -120,13 +120,16 @@ export const GeographyGame = () => {
                 }`}>{feedback}</p>
             {submissionTimes % 5 === 0  && submissionTimes !== 0 ? <h3 className='text-xl font-semibold mb-6 text-teal-600'>score for the past 5 attempts: {score} pts</h3> : <></>}
             <hr className='border-2 border-dashed border-gray-300'/>
-            <button className='w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-green-700 mb-4  mt-6 transition duration-200 ease-in-out' onClick={handleHints}>Stuck? Click here to obtain hint for the country name!</button>
+            <button className='w-full bg-pink-400 text-white py-2 px-4 rounded-md hover:bg-green-700 mb-4  mt-6 transition duration-200 ease-in-out' onClick={handleHints}>Stuck? Click here to obtain hint for the country name!</button>
             <p className='text-lg mb-6 text-gray-700'>&#x27A1; {hintInfo}...</p>
-            <button className='w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out' onClick={handleSubmit}>Submit the answer</button>
+            <button className='w-full bg-teal-400 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out' onClick={handleSubmit}>Submit the answer</button>
             {/* <Link to='../leaderboard'>Jump to the Leaderboard</Link> */}
             <button onClick={() => {
                 navigate('/leaderboard');
-            }} className='w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out mt-2'>Jump to the Leaderboard</button>
+            }} className='w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out mt-2'>Jump to the Leaderboard</button>
+            <button onClick={() => {
+                navigate('/');
+            }} className='w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out mt-2'>Back to home</button>
         </div>
     );
 }

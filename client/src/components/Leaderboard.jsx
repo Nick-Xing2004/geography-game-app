@@ -33,7 +33,10 @@ export const Leaderboard = () => {
             </ul>
             <button onClick={() => {
                 navigate('/game');
-            }} className='w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out mt-4'>back to the game right now!</button>
+            }} className='w-full bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 ease-in-out mt-4'>Back to the game right now</button>
+            <button onClick={() => {
+                navigate('/');
+            }} className='w-full bg-pink-600 text-white py-2 px-4 rounded-md hover:bg-fuchsia-500 transition duration-200 ease-in-out mt-4'>Back to home</button>
         </div>
 
     );
