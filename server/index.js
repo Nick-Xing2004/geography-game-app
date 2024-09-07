@@ -7,7 +7,7 @@ const cors = require('cors');
 app.use(cors()); //configure the cors to allow req from all origins
 app.use(express.json());
 
-let currentQuestion = "";     //global variable for storing the answer and the question (the lattest one)
+let keyOfQuestion = "";     //global variable for storing the answer of the current question
 
 //helper function for the main callback function below for making questions for the user 
 const getRandomCountryQuestion = async () => {
