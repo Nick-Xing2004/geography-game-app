@@ -71,8 +71,8 @@ const getRandomCountryQuestion = async () => {
 
         return randomQuestion;    //returning the question and the key and the hints array 
     } catch (error) {
-        console.log("exist errors while fetching data from the api");
-        return null;
+        // console.log("exist errors while fetching data from the api");  //testing logging statement
+        return getRandomCountryQuestion();     //once encountering the undefined value(case), fetch again
     }
 }
 
