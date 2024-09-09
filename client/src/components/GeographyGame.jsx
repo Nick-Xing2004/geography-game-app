@@ -21,7 +21,11 @@ export const GeographyGame = () => {
     const [hintInfo, setHintInfo] = useState("");
 
     //state used for submission animation controlling
-    const [showConfetti, setShowConfetti] = useState(false);    
+    const [showConfetti, setShowConfetti] = useState(false);   
+    
+    //the timer used to record the time elapsed 
+    const [timeElapsed, setTimeElapsed] = useState(0);
+    const [timer, setTimer] = useState(null);
     
     //the hook used for fetching data from the backend 
     useEffect(() => {
@@ -31,19 +35,34 @@ export const GeographyGame = () => {
             setQuestion(data.question);
             setHint(data.answer);
             console.log(data.answer);       //used for testing program stability
-        })
+        });
+
+        resetTimer();     //clear the time recording
     }, [submissionTimes]);    //being called once submissionTimes changed 
 
     //submission handling function
     const handleSubmit = async () => {
         try {
+            stopTimer();
+
             const response = await axios.post("http://localhost:3001/api/verifications", { answer });
 
             if (response.data.correctness) {
+                //calculate the score for the question based on the time it took to answer the question correctly
+                let subScore = 1;    //the score for each single question
+                if (timeElapsed <= 5) { //the score the user will get if answer it correctly within 5 seconds 
+                    subScore = 2.5;
+                } else if (timeElapsed <= 10) {  //the score the user will get if answer it correctly within 10 seconds 
+                    subScore = 2;
+                } else if (timeElapsed <= 20) {  //...
+                    subScore = 1.5;
+                }
+
+
                 if (submissionTimes % 5 === 0) {
-                    setScore(1);
+                    setScore(subScore);
                 } else {
-                    setScore(score+1);
+                    setScore(score + subScore);
                 }
                 setFeedback("Yes, your answer is correct and you will be given a point!");
                 setIsCorrect(true);
@@ -102,9 +121,31 @@ export const GeographyGame = () => {
             console.error("Error saving score: ", err);
         }
     }
+
+
+    //the time control function 
+    const resetTimer = () => {
+        //guaranteed timer has already been stopped before initiating a new one 
+        if (timer) {
+            clearInterval(timer);
+        }
+
+        setTimeElapsed(0);      //clear the time recorder state
+        const newTimer = setInterval(() => {
+            setTimeElapsed((prev) => prev + 1);
+        }, 1000);           //get the new timer set up
+
+        setTimer(newTimer);
+    };
+
+    const stopTimer = () => {
+        clearInterval(timer);
+    }
     
     return (
         <div className='p-8 mx-auto bg-sky-100 rounded-lg shadow-md max-w-lg'>
+            {/* timer for user to view */}
+            <h4 className='text-lg text-gray-500 mb-4'>Time spent: {timeElapsed} seconds</h4>
             <img src={image1} className='w-80 height-auto mx-auto -mt-4'></img>
             {/* <h1 className='text-4xl font-bold text-center text-sky-400 mb-6'>Welcome to the Geography Guessing Game!</h1> */}
             <h3 className='text-2xl font-semibold mb-4 text-purple-500 italic '>Current Question: {question}</h3>
@@ -115,7 +156,7 @@ export const GeographyGame = () => {
             }}/>
             {/* displays the animation when the user answers the question correctly */}
             {showConfetti && <Confetti/>}      
-            <p className={`text-lg font-semibold mb-8 ${
+            <p className={`text-lg font-semibold mb-4 ${
                     isCorrect === true ? 'text-green-600' : 
                     isCorrect === false ? 'text-red-600' : 'text-teal-600'
                 }`}>{feedback}</p>

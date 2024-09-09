@@ -13,6 +13,7 @@ please run "npm install {package name}" to install the specified packages below:
 4.react-confetti
 
 To run the backend, change the directory to 'server' and enter 'node index.js' in the terminal; for the frontend, first change the current directory to 'client', then enter 'npm start' to launch the react application.
+(note: I've logged the correct answer to each question to the console (the console in the web browser), so that you can enter the correct answer to check for the ribbon animation!)
 
 
 #Reflections on the coding process:
@@ -20,15 +21,18 @@ Besides achieving the basic requirements for the game desgin, I also did some en
 1. display ribbon animation for a few seconds when the user answers the geography question correctly
 2. pop-up the name input box asking for player name for the leaderboard once the user completes five questions; entering name is optional and the score and the associated name  will not appear on the leaderboard if the player skip the input
 3. clicking the hint button can get related hints
-4. set up a leaderboard so that players could check their rank on the leaderborad
-5. set up three pages and allow for going back ad forth among them
+4. grade the players based on both their correctness and their speed (give 2.5pts if less than 5s, 2pts if less than 10s, 1.5pts if less than 20s, otherwise just 1pt)
+5. set up a timer for user to check the time already elapsed (use second as the unit)
+6. set up a leaderboard so that players could check their rank on the leaderborad
+7. set up three pages and allow for going back ad forth among them
 
 #Project feedback:
 The project itself is interesting and gives a lot of room for free play! I really appreciate Change++ assigns this and desire to work on more web dev projects later.
 
 #Some potential improvements:
 - For the leaderboard functionality, using database, like MongoDB, might be a more reasonable choice for storing the game records, in consideration of the stability of the app.
-- Some other perspectives of grading could also be added: in addition to grading their accuracy, grade the users on the time it took to finish 1 round ...
+- For the leaderboard ranking, maybe rank the players based on both their scores and the time spent in total is more reasonable.
+
 
 
 Really enjoy the time spent on the project. Besides, really appreciate the time and energy spent for holding the info session. Feel free to contact if you have questions while grading my project!
