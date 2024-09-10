@@ -22,7 +22,7 @@ Besides achieving the basic requirements for the game desgin, I also did some en
 2. pop-up the name input box asking for player name for the leaderboard once the user completes five questions; entering name is optional and the score and the associated name  will not appear on the leaderboard if the player skip the input
 3. clicking the hint button can get related hints
 4. grade the players based on both their correctness and their speed (give 2.5pts if less than 5s, 2pts if less than 10s, 1.5pts if less than 20s, otherwise just 1pt)
-5. set up a timer for user to check the time already elapsed (use second as the unit)
+5. set up a timer on the ui for user to check the time already elapsed (use second as the unit)
 6. set up a leaderboard so that players could check their rank on the leaderborad
 7. set up three pages and allow for going back ad forth among them
 
@@ -35,7 +35,7 @@ The project itself is interesting and gives a lot of room for free play! I reall
 
 
 
-Really enjoy the time spent on the project. Besides, really appreciate the time and energy spent for holding the info session. Feel free to contact if you have questions while grading my project!
+Really enjoy the time spent on the project. Besides, really appreciate the time and energy spent for holding the info session. Feel free to contact me if you have any questions while grading my project!
 
 
 
