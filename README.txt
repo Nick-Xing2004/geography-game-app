@@ -13,7 +13,7 @@ please run "npm install {package name}" to install the specified packages below:
 4.react-confetti
 
 To run the backend, change the directory to 'server' and enter 'node index.js' in the terminal; for the frontend, first change the current directory to 'client', then enter 'npm start' to launch the react application.
-(note: I've logged the correct answer to each question to the console (the console in the web browser), so that you can enter the correct answer to check for the ribbon animation!)
+(note: I've logged the correct answer to each question to the console (the console in the web browser), so that you can check and enter the correct answer to check for the ribbon animation!)
 
 
 #Reflections on the coding process:
@@ -32,7 +32,7 @@ The project itself is interesting and gives a lot of room for free play! I reall
 #Some potential improvements:
 - For the leaderboard functionality, using database, like MongoDB, might be a more reasonable choice for storing the game records, in consideration of the stability of the app.
 - For the leaderboard ranking, maybe rank the players based on both their scores and the time spent in total is more reasonable.
-
+- For the guessing game part, maybe changing inputting answers manually to answering multiple choice questions would enhance the user experience a bit (I don't like the multiple choice mode, thus did not implement it...).
 
 
 Really enjoy the time spent on the project. Besides, really appreciate the time and energy spent for holding the info session. Feel free to contact me if you have any questions while grading my project!
