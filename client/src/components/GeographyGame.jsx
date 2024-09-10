@@ -51,14 +51,14 @@ export const GeographyGame = () => {
 
             if (response.data.correctness) {
                 //calculate the score for the question based on the time it took to answer the question correctly
-                if (timeElapsed <= 5) { //the score the user will get if answer it correctly within 5 seconds 
+                if (timeElapsed <= 5) { //the score the user will get if answers it correctly within 5 seconds 
                     subScore = 2.5;
-                } else if (timeElapsed <= 10) {  //the score the user will get if answer it correctly within 10 seconds 
+                } else if (timeElapsed <= 10) {  //the score the user will get if answers it correctly within 10 seconds 
                     subScore = 2;
-                } else if (timeElapsed <= 20) {  //the score the user will get if answer it correctly within 20 seconds
+                } else if (timeElapsed <= 20) {  //the score the user will get if answers it correctly within 20 seconds
                     subScore = 1.5;
                 } else {
-                    subScore = 1; //if exceed 20 seconds, only get 1pt
+                    subScore = 1; //if exceeds 20 seconds, only get 1pt
                 }
 
 

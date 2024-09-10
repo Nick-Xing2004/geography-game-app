@@ -14,7 +14,7 @@ please run "npm install {package name}" to install the specified packages below:
 
 To run the backend, change the directory to 'server' and enter 'node index.js' in the terminal; for the frontend, first change the current directory to 'client', then enter 'npm start' to launch the react application.
 (note: I've logged the correct answer to each question to the console (the console in the web browser), so that you can check and enter the correct answer to check for the ribbon animation!)
-(note: if for some reasons the application stucks(no question pumps out wherever you click), please try to restart the frontend and the backend-then it would work as normal!)
+(note: If for some reasons the application stucks(no question pumps out wherever you click), please try to restart the frontend and the backend-then it would work as normal!)
 
 
 #Reflections on the coding process:
