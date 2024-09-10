@@ -55,10 +55,10 @@ export const GeographyGame = () => {
                     subScore = 2.5;
                 } else if (timeElapsed <= 10) {  //the score the user will get if answer it correctly within 10 seconds 
                     subScore = 2;
-                } else if (timeElapsed <= 20) {  //...
+                } else if (timeElapsed <= 20) {  //the score the user will get if answer it correctly within 20 seconds
                     subScore = 1.5;
                 } else {
-                    subScore = 1; //if exceeding 20 seconds, only get 1pt
+                    subScore = 1; //if exceed 20 seconds, only get 1pt
                 }
 
 
@@ -74,7 +74,7 @@ export const GeographyGame = () => {
                 //the time controlling functionality set to control the submission animation time length
                 setTimeout(() => {
                     setShowConfetti(false);
-                }, 3000);
+                }, 5000);
                 
 
             } else {
