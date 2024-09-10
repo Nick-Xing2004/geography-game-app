@@ -27,7 +27,7 @@ Besides achieving the basic requirements for the game desgin, I also did some en
 7. set up three pages and allow for going back ad forth among them
 
 #Project feedback:
-The project itself is interesting and gives a lot of room for free play! I really appreciate Change++ assigns this and desire to work on more web dev projects later.
+The project itself is interesting and gives a lot of room for free play! I really appreciate Change++ assigns this and desire to work on more web dev projects with the team later.
 
 #Some potential improvements:
 - For the leaderboard functionality, using database, like MongoDB, might be a more reasonable choice for storing the game records, in consideration of the stability of the app.
