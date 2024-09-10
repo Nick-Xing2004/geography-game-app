@@ -47,15 +47,18 @@ export const GeographyGame = () => {
 
             const response = await axios.post("http://localhost:3001/api/verifications", { answer });
 
+            let subScore = 0;
+
             if (response.data.correctness) {
                 //calculate the score for the question based on the time it took to answer the question correctly
-                let subScore = 1;    //the score for each single question
                 if (timeElapsed <= 5) { //the score the user will get if answer it correctly within 5 seconds 
                     subScore = 2.5;
                 } else if (timeElapsed <= 10) {  //the score the user will get if answer it correctly within 10 seconds 
                     subScore = 2;
                 } else if (timeElapsed <= 20) {  //...
                     subScore = 1.5;
+                } else {
+                    subScore = 1; //if exceeding 20 seconds, only get 1pt
                 }
 
 
@@ -82,8 +85,8 @@ export const GeographyGame = () => {
                 setIsCorrect(false);
             }
 
-            if (submissionTimes !== 0 && (submissionTimes + 1) % 5 === 0) {
-                saveScore(score);
+            if ((submissionTimes + 1) % 5 === 0) {
+                saveScore(score + subScore);
             }
     
             setSubmissionTimes(submissionTimes + 1);        //updating the submissionTimes
